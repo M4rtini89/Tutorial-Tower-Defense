@@ -7,11 +7,13 @@ public class MonsterLevel
 {
     public int cost;
     public GameObject visualization;
+    public BulletBehavior bullet;
+    public float fireRate;
 }
 
 public class MonsterData : MonoBehaviour
 {
-    [SerializeField] private List<MonsterLevel> levels;
+    [SerializeField] public List<MonsterLevel> levels;
     private MonsterLevel currentLevel;
 
     private void OnEnable()

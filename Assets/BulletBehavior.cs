@@ -1,0 +1,56 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class BulletBehavior : MonoBehaviour
+{
+    [SerializeField] private float speed = 10;
+    [SerializeField] private int damage;
+    public GameObject target;
+    public Vector3 startPosition;
+    public Vector3 targetPosition;
+
+    private float distance;
+    private float startTime;
+
+    private GameManagerBehavior gameManager;
+
+    // Start is called before the first frame update
+    private void Start()
+    {
+        startTime = Time.time;
+        distance = Vector2.Distance(startPosition, targetPosition);
+        gameManager = FindObjectOfType<GameManagerBehavior>();
+    }
+
+    // Update is called once per frame
+    private void Update()
+    {
+        // 1
+        float timeInterval = Time.time - startTime;
+        gameObject.transform.position = Vector3.Lerp(startPosition, targetPosition, timeInterval * speed / distance);
+
+        // 2
+        if (gameObject.transform.position.Equals(targetPosition))
+        {
+            if (target != null)
+            {
+                // 3
+                Transform healthBarTransform = target.transform.Find("HealthBar");
+                HealthBar healthBar =
+                    healthBarTransform.gameObject.GetComponent<HealthBar>();
+                healthBar.currentHealth -= Mathf.Max(damage, 0);
+                // 4
+                if (healthBar.currentHealth <= 0)
+                {
+                    Destroy(target);
+                    AudioSource audioSource = target.GetComponent<AudioSource>();
+                    AudioSource.PlayClipAtPoint(audioSource.clip, transform.position);
+
+                    gameManager.Gold += 50;
+                }
+            }
+            Destroy(gameObject);
+        }
+    }
+}

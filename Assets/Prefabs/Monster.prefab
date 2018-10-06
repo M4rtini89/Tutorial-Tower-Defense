@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 410648}
   - component: {fileID: 21281326}
   - component: {fileID: 9566906}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Monster2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &410648
 Transform:
   m_ObjectHideFlags: 0
@@ -110,7 +110,9 @@ GameObject:
   - component: {fileID: 493582}
   - component: {fileID: 8224800}
   - component: {fileID: 2782348222530590149}
-  m_Layer: 0
+  - component: {fileID: 7388137044043961409}
+  - component: {fileID: 8349225298824737992}
+  m_Layer: 2
   m_Name: Monster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -245,10 +247,44 @@ MonoBehaviour:
   levels:
   - cost: 200
     visualization: {fileID: 158574}
+    bullet: {fileID: 5074146273970914690, guid: 79c82a1d06a9bc245bcbf90735f4e480, type: 3}
+    fireRate: 1
   - cost: 110
     visualization: {fileID: 198738}
+    bullet: {fileID: 4899200535461039184, guid: e9b4649f354cea14e8b26e18831d5c68, type: 3}
+    fireRate: 1
   - cost: 120
     visualization: {fileID: 105412}
+    bullet: {fileID: 1583685576755596019, guid: 25fa4c0128938094482015c89a7440ab, type: 3}
+    fireRate: 1
+--- !u!58 &7388137044043961409
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 134384}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 2.5
+--- !u!114 &8349225298824737992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 134384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe04ceb6027e8834fa46e39d50e1cbaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &158574
 GameObject:
   m_ObjectHideFlags: 0
@@ -260,13 +296,13 @@ GameObject:
   - component: {fileID: 487462}
   - component: {fileID: 21246442}
   - component: {fileID: 9559892}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Monster0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &487462
 Transform:
   m_ObjectHideFlags: 0
@@ -359,13 +395,13 @@ GameObject:
   - component: {fileID: 455556}
   - component: {fileID: 21207170}
   - component: {fileID: 9582102}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Monster1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &455556
 Transform:
   m_ObjectHideFlags: 0

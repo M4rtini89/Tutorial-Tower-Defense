@@ -4,21 +4,27 @@ using UnityEngine;
 
 public class PlaceMonster : MonoBehaviour
 {
-    [SerializeField] private GameObject monsterPrefab;
-    private GameObject monster;
+    [SerializeField] private MonsterData monsterPrefab;
+    private MonsterData monster;
+    private GameManagerBehavior gameManager;
+
+    public void Start()
+    {
+        gameManager = FindObjectOfType<GameManagerBehavior>();
+    }
 
     private bool CanPlaceMonster()
     {
-        return monster == null;
+        int cost = monsterPrefab.levels[0].cost;
+        return monster == null && gameManager.Gold >= cost;
     }
 
     private bool CanUpgradeMonster()
     {
         if (monster != null)
         {
-            MonsterData monsterData = monster.GetComponent<MonsterData>();
-            MonsterLevel nextLevel = monsterData.GetNextLevel();
-            if (nextLevel != null)
+            MonsterLevel nextLevel = monster.GetNextLevel();
+            if (nextLevel != null && nextLevel.cost <= gameManager.Gold)
             {
                 return true;
             }
@@ -34,13 +40,15 @@ public class PlaceMonster : MonoBehaviour
 
             AudioSource audioSource = gameObject.GetComponent<AudioSource>();
             audioSource.PlayOneShot(audioSource.clip);
+            gameManager.Gold -= monster.CurrentLevel.cost;
         }
         else if (CanUpgradeMonster())
         {
-            monster.GetComponent<MonsterData>().IncreaseLevel();
+            monster.IncreaseLevel();
             AudioSource audioSource = gameObject.GetComponent<AudioSource>();
             audioSource.PlayOneShot(audioSource.clip);
-            // TODO: Deduct gold
+
+            gameManager.Gold -= monster.CurrentLevel.cost;
         }
     }
 }
